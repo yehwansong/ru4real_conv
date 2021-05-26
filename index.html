@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Conversation</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <style>
+            @font-face {
+               font-family: abc;
+               src: url(typeface/ABCProphet-Medium-Trial.woff);
+               src: url(typeface/ABCProphet-Medium-Trial.otf),
+                    url(typeface/ABCProphet-Medium-Trial.woff2);
+            }
+            *{
+               font-family: abc;
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                width: 100vw;
+                height: 100vh;
+                background-color: black;
+            }
+            .title{
+                height: 3vh;
+                text-align: center;
+                line-height: 3.2vh;
+                font-size: 1.9vh;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 0;
+            }
+            .wrapper{
+                position: relative;
+                height: 100vh;
+                width: 50vh;
+                box-sizing: border-box;
+                padding: 1.5vh;
+                padding-top: 5.5vh;
+            }
+            .conv{
+                position: relative;
+                clear: both;
+                overflow: hidden;
+                width: 42.5vh;
+                margin-bottom: 0.85vh
+            }
+            .speaker{
+                width: 3.5vh;
+                height: 3.5vh;
+                border-radius: 50%;
+                background: #f6b185;
+                position: absolute;
+                bottom: 0
+            }
+            .speaker_color_1{
+                background: #f6b185;
+            }
+            .speaker_color_2{
+                background: #f6b185;
+            }
+            .speaker_color_3{
+                background: #f6b185;
+            }
+            .bubble{        
+                max-width: 37vh;
+                border: 1px solid black;
+                position: relative;
+                /* left: 0; */
+                font-size: 1.1vh;
+                padding: 1vh 2vh;
+                box-sizing: border-box;
+                line-height: 1.4;
+                border-radius: 0.6vh;
+                min-height: 3.5vh;
+            }
+            input,.loading{
+                position: absolute;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+            }
+            .loading:after {
+              content: ' .';
+              animation: dots 1s steps(5, end) infinite;
+            }
+            .loading{
+    font-size: 3vh;
+    line-height: 0.7;
+    display: block;
+}
+.wrapper{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+                background-image: url('chat_bg.png');
+                background-repeat: no-repeat;
+                background-position: left top;
+                background-size: contain;}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,0,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color:  black;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 black,
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 black,
+      .5em 0 0 black;}
+}
+#searchTxt{
+
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    border-radius: 0;
+    box-sizing: border-box;
+    border: 1px solid black;
+    height: 4.2vh;
+    padding: 1vh;
+    background-color: transparent;
+}
+.content img{
+    width: 100%;
+}
+.send{
+    width: 10vh;
+    height: 4.2vh;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    cursor: pointer;
+    background-image: url(send.png);
+    background-size: auto 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.conv_r .bubble {
+    left: 5vh;
+    float: left;
+}
+.conv_r .speaker{
+    left: 0
+}
+.conv_l .bubble{
+    right: 5vh;
+    float: right;
+}
+.conv_l .speaker{
+    right: 0
+}
+.conv_wrapper{
+    bottom: 4.2vh;
+    max-height: calc(100% - 7vh);
+    width: 100%;
+    left: 0;
+    padding-left: 1.5vh;
+    position: absolute;
+    overflow-y: scroll;
+}
+.time{
+    font-size: 0.8vh;
+    opacity: 0.5;
+}
+.conv_l .time{text-align: right;
+}
+        </style>
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript">
+            var some_array=[
+                    [
+                        'Hey, have you ever heard <br>\
+                        “Now the whole earth had one language and the same words.”?<br>\
+                        Do you know what it means?',
+                        'l'
+                    ],[
+                        '現在整個地球都用同一個語言,<br>\
+                        Nun hatte die ganze Erde eine Sprache und die gleichen Worte.<br>\
+                        In which language do you want to know?<br>\
+                        Or I misunderstand what you mean…..',
+                        'r'
+                    ],[
+                        'heyyyy',
+                        'l'
+                    ],[
+                        '<audio controls>\
+                          <source src="sound/sound_01.mp3" type="audio/mpeg">\
+                        </audio>',
+                        'r'
+                    ],[
+                        '<audio controls>\
+                          <source src="sound/sound_02.mp3" type="audio/mpeg">\
+                        </audio>',
+                        'r'
+                    ],[
+                        '<img src="img/img1.gif">',
+                        'l'
+                    ],[
+                        '<img src="img/img2.jpg">',
+                        'r'
+                    ]
+                ]
+            $(document).ready(function(){
+                user_typing()
+                    var inputTextValue;
+                function user_typing(){
+                    window.onkeyup = keyup;
+                    function keyup(e) {
+                        inputTextValue = e.target.value;
+                        if (e.keyCode == 13) {
+                            console.log(inputTextValue)
+                        }
+                    }
+                }
+                var typecounter = 0
+                var timeout_1
+                var timeout_2
+                type_1()
+                function type_1(){
+                    typecounter ++
+                    $('.conv_wrapper').append('\
+                        <div class="conv conv_'+typecounter+' conv_'+some_array[typecounter][1]+'">\
+                            <div class="speaker"></div>\
+                            <div class="bubble">\
+                                <div class="content loading">\
+                                </div>\
+                                <div class="time"></div>\
+                            </div>\
+                        </div>')
+                    $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
+                    timeout_1 = setTimeout(function(){
+                        type_2(typecounter)
+                    },3000)
+                }
+                function type_2(typecounter){
+                    $('.conv_'+typecounter).find('.content').append(some_array[typecounter][0])
+                    $('.conv_'+typecounter).find('.content').removeClass('loading')
+                    var today = new Date();
+                    var time = today.getHours() + ":" + today.getMinutes()
+                    $('.conv_'+typecounter).find('.time').html(time)
+                    $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
+                    if(typecounter<some_array.length){
+                        timeout_2 = setTimeout(function(){
+                            type_1()
+                        },500)
+                    }
+                }
+                $('.send').click(function(){
+                    if($('.loading').length>0){
+                        $('.loading').parent().parent().remove()
+                        typecounter --
+                        clearTimeout(timeout_1)
+                        clearTimeout(timeout_2)
+                    }
+                    var today = new Date();
+                    var time = today.getHours() + ":" + today.getMinutes()
+                    $('.conv_'+typecounter).find('.time').html(time)
+                    $('.conv_wrapper').append('\
+                        <div class="conv conv_l">\
+                            <div class="speaker"></div>\
+                            <div class="bubble">\
+                                <div class="content">'+inputTextValue+'</div>\
+                                <div class="time">'+time+'</div>\
+                            </div>\
+                        </div>')
+                    $('#searchTxt').val('')
+                    $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
+                    type_1()
+                })
+            })
+        </script>
+	</head>
+	<body>
+        <!-- inputno&&scrollbototm&&time -->
+        <div class="wrapper">
+            <div class="title">CONVERSATION</div>
+            <div class="writingbox"></div>
+            <div class="conv_wrapper"></div>
+            <input id="searchTxt" placeholder="ASK SOMETHING">
+            <div class='send'></div>
+        </div>
+	</body>
+</html>
