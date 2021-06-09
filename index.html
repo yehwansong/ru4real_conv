@@ -30,6 +30,7 @@
                 width: 100%;
                 left: 0;
                 top: 0;
+                border-bottom: 1px solid black
             }
             .wrapper{
                 position: relative;
@@ -38,6 +39,7 @@
                 box-sizing: border-box;
                 padding: 1.5vh;
                 padding-top: 5.5vh;
+                overflow: hidden;
             }
             .conv{
                 position: relative;
@@ -54,14 +56,14 @@
                 position: absolute;
                 bottom: 0
             }
-            .speaker_color_1{
-                background: #f6b185;
+            .speaker_b{
+                background: #8baddc;
             }
-            .speaker_color_2{
-                background: #f6b185;
+            .speaker_r{
+                background: #f39ca2;
             }
-            .speaker_color_3{
-                background: #f6b185;
+            .speaker_o{
+                background: #f7b284;
             }
             .bubble{        
                 max-width: 37vh;
@@ -94,11 +96,18 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-                background-image: url('chat_bg.png');
-                background-repeat: no-repeat;
-                background-position: left top;
-                background-size: contain;}
+    background-image: url(chat_bg.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+@media (max-aspect-ratio: 1/1) {
 
+            .wrapper{
+                height: 100%;
+                width: 100vw;
+            }
+}
 @keyframes dots {
   0%, 20% {
     color: rgba(0,0,0,0);
@@ -120,16 +129,19 @@
       .5em 0 0 black;}
 }
 #searchTxt{
-
     top: auto;
     bottom: 0;
     width: 100%;
     border-radius: 0;
     box-sizing: border-box;
-    border: 1px solid black;
+    border-top: 1px solid black;
     height: 4.2vh;
     padding: 1vh;
     background-color: transparent;
+    width: 100%;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 0;
 }
 .content img{
     width: 100%;
@@ -147,18 +159,22 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-.conv_r .bubble {
+.conv_dir_1 .bubble {
     left: 5vh;
     float: left;
 }
-.conv_r .speaker{
+.conv_dir_1 .speaker{
     left: 0
 }
-.conv_l .bubble{
+.conv_dir_0{
+    right: 1.5vh;
+    float: right;
+}
+.conv_dir_0 .bubble{
     right: 5vh;
     float: right;
 }
-.conv_l .speaker{
+.conv_dir_0 .speaker{
     right: 0
 }
 .conv_wrapper{
@@ -174,44 +190,225 @@
     font-size: 0.8vh;
     opacity: 0.5;
 }
-.conv_l .time{text-align: right;
+.loading{
+    left: 0.775vh;}
+.conv_dir_0 .time{text-align: right;
+}
+audio{
+    max-width: 33vh;
+    opacity: 0.5 
+}
+.s_speaker{
+    width: 1.2vh;
+    height: 1.2vh;
+    border-radius: 50%;
+    display: inline-block;
+    transform: translateY(0.25vh);
 }
         </style>
         <script src="js/jquery.js"></script>
-        <script type="text/javascript">
-            var some_array=[
-                    [
-                        'Hey, have you ever heard <br>\
-                        “Now the whole earth had one language and the same words.”?<br>\
-                        Do you know what it means?',
-                        'l'
-                    ],[
-                        '現在整個地球都用同一個語言,<br>\
-                        Nun hatte die ganze Erde eine Sprache und die gleichen Worte.<br>\
-                        In which language do you want to know?<br>\
-                        Or I misunderstand what you mean…..',
-                        'r'
-                    ],[
-                        'heyyyy',
-                        'l'
-                    ],[
-                        '<audio controls>\
-                          <source src="sound/sound_01.mp3" type="audio/mpeg">\
-                        </audio>',
-                        'r'
-                    ],[
-                        '<audio controls>\
-                          <source src="sound/sound_02.mp3" type="audio/mpeg">\
-                        </audio>',
-                        'r'
-                    ],[
-                        '<img src="img/img1.gif">',
-                        'l'
-                    ],[
-                        '<img src="img/img2.jpg">',
-                        'r'
-                    ]
-                ]
+        <script type="text/javascript">var some_array=[
+    [
+    'o',''
+    ],[
+    'o','Hey <div class="s_speaker speaker_b"></div>, have you ever heard “Now the whole earth had one language and the same words.” (Tower of Babel)? Do you know what it means?'
+    ],[
+    'b','現在整個地球都用同一個語言,Nun hatte die ganze Erde eine Sprache und die gleichen Worte. In which language do you want to know? Or I misunderstand what you mean…..'
+    ],[
+    'r','Heyyyy'
+    ],[
+    'o','<audio controls><source src="sound/sound_01.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<img src="img/__3_00800.jpg">'
+    ],[
+    'r','Heyyyy guys!'
+    ],[
+    'o','<audio controls><source src="sound/sound_02.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','I know about the lady that talks to herself. I mean, I know about people who talk to themselves.'
+    ],[
+    'r','Halu cigana nyokap maneh. Haha'
+    ],[
+    'o','Do you think artists must speak and work in english?'
+    ],[
+    'o','<img src="screenshot/01.png"><a target="_blank" href="https://mladenstilinovic.files.wordpress.com/2013/10/an-artis-who1.jpg">https://mladenstilinovic.files.wordpress.com/2013/10/an-artis-who1.jpg</a>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_03.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_04.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<div class="s_speaker speaker_r"></div> : NEEEE gar nicht. Many artists sprechen kein Englisch andddd they make ugly art. Many both at the same time. Sedih eh. Aing ketawain sih. But most importantly, you still wanna know about people who speak to themselves?]   Ké heula, ugly art could be cool after I think about it.'
+    ],[
+    'b','<audio controls><source src="sound/Sound_05.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<img src="screenshot/02.png"><a target="_blank" href="https://en.wikipedia.org/wiki/Pidgin">https://en.wikipedia.org/wiki/Pidgin</a>'
+    ],[
+    'o','Where are you from, exactly?'
+    ],[
+    'o','<img src="screenshot/03.png"><a target="_blank" href="https://www.lautarchiv.hu-berlin.de/objekte/lautarchiv/52958/">https://www.lautarchiv.hu-berlin.de/objekte/lautarchiv/52958/</a>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_06.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<img src="screenshot/04.png"><a target="_blank" href="https://www.youtube.com/watch?v=LYCKzpXEW6E">https://www.youtube.com/watch?v=LYCKzpXEW6E</a>'
+    ],[
+    'o','<audio controls><source src="sound/Sound_07.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_08.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<div class="s_speaker speaker_o"></div> Yes you are, I think you are real. Or, I’m not sure anymore. Let me think for a moment. Is there someone with us? Is there someone else listening to what we say?”) AND YES ME!!! ME!! Masya Allah.. I’m here the whole time and I’m listening to each of you.'
+    ],[
+    'o','<audio controls><source src="sound/Sound_09.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<img src="screenshot/05.png"><a target="_blank" href="https://satellitegallery.files.wordpress.com/2011/10/this_is_a_mirror-b.jpg">https://satellitegallery.files.wordpress.com/2011/10/this_is_a_mirror-b.jpg</a>'
+    ],[
+    'r','I think you like 0 and 1 (if you know what I mean).'
+    ],[
+    'b','<audio controls><source src="sound/sound_10.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','Maybe this could help you understand what I mean'
+    ],[
+    'b','<img src="screenshot/06.png"><a target="_blank" href="https://www.youtube.com/watch?v=GqCassiptTs">https://www.youtube.com/watch?v=GqCassiptTs</a>'
+    ],[
+    'r','You never knew??? Well, du weisst genau what’s real and what’s not.'
+    ],[
+    'b','Why is your radio always on?'
+    ],[
+    'b','<img src="screenshot/07.png"><a target="_blank" href="http://radio.garden/">http://radio.garden/</a>'
+    ],[
+    'o','<audio controls><source src="sound/Sound_11.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_12.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_13.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_14.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_15.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_16.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_17.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<audio controls><source src="sound/Sound_18.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<img src="screenshot/08.png"><a target="_blank" href="https://www.berfrois.com/2014/12/david-beer-walter-benjamins-voice/">https://www.berfrois.com/2014/12/david-beer-walter-benjamins-voice/</a>'
+    ],[
+    'o','<audio controls><source src="sound/Sound_19.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_20.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','Yea, maybe this unscientific data of yours also presented by those cis male as well. ?'
+    ],[
+    'o','You know, I usually don’t talk that much, especially not to people I do not know. Generally I’m a bit shy.'
+    ],[
+    'r','Haha, I’m sure <div class="s_speaker speaker_o"></div> is simply the kind of person who talks more on chats than IRL'
+    ],[
+    'o','<audio controls><source src="sound/Sound_21.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<img src="img/IMG_1278.jpg">'
+    ],[
+    'b','<audio controls><source src="sound/Sound_22.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_23.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_24.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<img src="img/image0.jpeg">'
+    ],[
+    'r','But, ini Mbahnya the girl I told u guys before'
+    ],[
+    'r','<img src="img/CCI05072021.jpg">'
+    ],[
+    'o','<audio controls><source src="sound/Sound_25.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','Maybe we should sing a song, all together?  '
+    ],[
+    'r','YES!!! VIRTUAL KARAOKE <3'
+    ],[
+    'b','Rap? R&B? Anyone?'
+    ],[
+    'b','<a target="_blank" href="Subtitle_vid_02">Subtitle_vid_02</a>'
+    ],[
+    '_','<audio controls><source src="sound/excercise_01.mp3" type="audio/mpeg"></audio>'
+    ],[
+    '_','<audio controls><source src="sound/excercise_02.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<audio controls><source src="sound/sound_28.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<img src="screenshot/09.png"><a target="_blank" href="https://www.youtube.com/watch?v=AWVUp12XPpU">https://www.youtube.com/watch?v=AWVUp12XPpU</a>'
+    ],[
+    'b','<audio controls><source src="sound/sound_29.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','What sounds would these angels make? Do they make a sound at all? I mean they don’t cast shadows so maybe they also can’t be heard. And I could swear I saw some the other day'
+    ],[
+    'o','<img src="img/Angels.gif">'
+    ],[
+    'r','<audio controls><source src="sound/Sound_30.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'r','<audio controls><source src="sound/Sound_31.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','Did she ever try that? What happened? Sounds exciting..'
+    ],[
+    'r','<audio controls><source src="sound/Sound_32.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<audio controls><source src="sound/Sound_33.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_34.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','如果每個人都有機會可以發聲，這個世界會更美好亦或是更混亂？'
+    ],[
+    'r','<audio controls><source src="sound/Sound_35.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','If everyone would have a voice, maybe it would sound like that.'
+    ],[
+    'o','<img src="screenshot/010.png"><a target="_blank" href="https://www.youtube.com/watch?v=PHBJNN-M_Mo">https://www.youtube.com/watch?v=PHBJNN-M_Mo</a>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_36.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<img src="screenshot/011.png"><a target="_blank" href="https://en.wikipedia.org/wiki/Untranslatability">https://en.wikipedia.org/wiki/Untranslatability</a>'
+    ],[
+    'o','<audio controls><source src="sound/Sound_37.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_38.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'o','<audio controls><source src="sound/Sound_39.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','<audio controls><source src="sound/Sound_40.mp3" type="audio/mpeg"></audio>'
+    ],[
+    'b','Maybe you could take a look at your reading material again? Maybe you do know more than I do?'
+    ],[
+    'o','<audio controls><source src="sound/Sound_37.mp3" type="audio/mpeg"></audio>'
+
+    ],[
+    'o','But I am just a voice, and nothing more.'
+
+    ],[
+    'o','<img src="screenshot/012.png"><a target="_blank" href="https://github.com/CorentinJ/Real-Time-Voice-Cloning">https://github.com/CorentinJ/Real-Time-Voice-Cloning</a>'
+    ],[
+    '_','<audio controls><source src="sound/Sound_42.mp3" type="audio/mpeg"></audio>'
+
+    ],[
+
+    '*ZAIDA LEFT THE GROUP*'
+
+    ],[
+
+    'Oh. She left. Did I say something wrong?'
+    ],[
+    'o','You speak so many languages. Does anyone speak as many languages like you do? Do they understand each other or they need you <div class="s_speaker speaker_b"></div>? '
+    ],[
+    'o','<img src="screenshot/013.png"><a target="_blank" href="http://adaweb.walkerart.org/influx/muntadas/project.html">http://adaweb.walkerart.org/influx/muntadas/project.html</a>'
+    ],[
+    'o','Where are we? Whose voice am I hearing?'
+    ],[
+    'o','<img src="screenshot/014.png"><a target="_blank" href="https://www.corner-college.com/udb/cprolsQKpGMDolar_Voice.pdf">https://www.corner-college.com/udb/cprolsQKpGMDolar_Voice.pdf</a>'
+    ],[
+    'o','Hello? Are you still there? Weird.'
+    ],[
+    'b','<img src="screenshot/015.png"><a target="_blank" href="https://www.youtube.com/watch?v=Ena8vqWWLvM">https://www.youtube.com/watch?v=Ena8vqWWLvM</a>'
+    ]
+]
+
             $(document).ready(function(){
                 user_typing()
                     var inputTextValue;
@@ -220,19 +417,26 @@
                     function keyup(e) {
                         inputTextValue = e.target.value;
                         if (e.keyCode == 13) {
-                            console.log(inputTextValue)
+                            sending()
                         }
                     }
                 }
                 var typecounter = 0
                 var timeout_1
                 var timeout_2
+                var org_color = 'o'
+                var color_counter = 1
                 type_1()
                 function type_1(){
                     typecounter ++
+                    console.log(org_color)
+                    if(org_color === some_array[typecounter][0]){}else{
+                        color_counter++
+                        org_color = some_array[typecounter][0]
+                    }
                     $('.conv_wrapper').append('\
-                        <div class="conv conv_'+typecounter+' conv_'+some_array[typecounter][1]+'">\
-                            <div class="speaker"></div>\
+                        <div class="conv conv_'+typecounter+' conv_dir_'+color_counter%2+'">\
+                            <div class="speaker speaker_'+some_array[typecounter][0]+'"></div>\
                             <div class="bubble">\
                                 <div class="content loading">\
                                 </div>\
@@ -242,10 +446,10 @@
                     $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
                     timeout_1 = setTimeout(function(){
                         type_2(typecounter)
-                    },3000)
+                    },8000)
                 }
                 function type_2(typecounter){
-                    $('.conv_'+typecounter).find('.content').append(some_array[typecounter][0])
+                    $('.conv_'+typecounter).find('.content').append(some_array[typecounter][1])
                     $('.conv_'+typecounter).find('.content').removeClass('loading')
                     var today = new Date();
                     var time = today.getHours() + ":" + today.getMinutes()
@@ -258,6 +462,9 @@
                     }
                 }
                 $('.send').click(function(){
+                    sending()
+                })
+                function sending(){
                     if($('.loading').length>0){
                         $('.loading').parent().parent().remove()
                         typecounter --
@@ -268,7 +475,7 @@
                     var time = today.getHours() + ":" + today.getMinutes()
                     $('.conv_'+typecounter).find('.time').html(time)
                     $('.conv_wrapper').append('\
-                        <div class="conv conv_l">\
+                        <div class="conv conv_l conv_dir_0">\
                             <div class="speaker"></div>\
                             <div class="bubble">\
                                 <div class="content">'+inputTextValue+'</div>\
@@ -278,14 +485,14 @@
                     $('#searchTxt').val('')
                     $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
                     type_1()
-                })
+                }
             })
         </script>
 	</head>
 	<body>
         <!-- inputno&&scrollbototm&&time -->
         <div class="wrapper">
-            <div class="title">CONVERSATION</div>
+            <div class="title">THE CONVERSATION</div>
             <div class="writingbox"></div>
             <div class="conv_wrapper"></div>
             <input id="searchTxt" placeholder="ASK SOMETHING">
