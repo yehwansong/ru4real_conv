@@ -481,7 +481,7 @@ audio{
                     $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
                     timeout_1 = setTimeout(function(){
                         type_2(typecounter)
-                    },50)
+                    },5000)
                 }
                 function type_2(typecounter){
                     $('.conv_'+typecounter).find('.content').append(some_array[typecounter][1])
@@ -493,7 +493,7 @@ audio{
                     if(typecounter<some_array.length){
                         timeout_2 = setTimeout(function(){
                             type_1()
-                        },50)
+                        },500)
                     }
                 }
                 $('.send').click(function(){
