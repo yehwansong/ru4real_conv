@@ -148,12 +148,13 @@
 }
 .content img.screenshot{
     float: left;
-    width: 50%;
+    width: 75%;
     padding: 0.5vh;
     box-sizing: border-box;
 }
-.content>a{
-    width: 50%;
+.content>a,
+.content>iframe{
+    width: 75%;
     position: relative;
     float: left;
     overflow: hidden;
@@ -236,13 +237,18 @@ audio{
     background-repeat: no-repeat;
     background-position: left;
     background-size: cover;
+    width: 4.6vh;
+    border-radius: 0;
+    background-color: transparent;
+
 }
 .conv_88{overflow: visible;}
 .sp_conv{
-
     overflow: visible;
     width: 100vw;
     min-width: 100vw;
+    height: 3.5vh;
+    left: -1.5vh;
 }
 .sp_conv .speaker{
     position: absolute;
@@ -313,7 +319,7 @@ audio{
     ],[
     'b','<audio controls><source src="sound/sound_06.mp3" type="audio/mpeg"></audio>'
     ],[
-    'b','<img class="screenshot" src="screenshot/04.png"><a target="_blank" href="https://www.youtube.com/watch?v=LYCKzpXEW6E">https://www.youtube.com/watch?v=LYCKzpXEW6E</a>'
+    'b','<iframe src="https://www.youtube.com/embed/LYCKzpXEW6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><a target="_blank" href="https://www.youtube.com/watch?v=LYCKzpXEW6E">https://www.youtube.com/watch?v=LYCKzpXEW6E</a>'
     ],[
     'o','<audio controls><source src="sound/sound_07.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -331,7 +337,7 @@ audio{
     ],[
     'b','Maybe this could help you understand what I mean'
     ],[
-    'b','<img class="screenshot" src="screenshot/06.png"><a target="_blank" href="https://www.youtube.com/watch?v=GqCassiptTs">https://www.youtube.com/watch?v=GqCassiptTs</a>'
+    'b','<iframe src="https://www.youtube.com/embed/GqCassiptTs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><a target="_blank" href="https://www.youtube.com/watch?v=GqCassiptTs">https://www.youtube.com/watch?v=GqCassiptTs</a>'
     ],[
     'r','You never knew??? Well, du weisst genau what’s real and what’s not.'
     ],[
@@ -399,7 +405,7 @@ audio{
     ],[
     'o','<audio controls><source src="sound/sound_28.mp3" type="audio/mpeg"></audio>'
     ],[
-    'o','<img class="screenshot" src="screenshot/09.png"><a target="_blank" href="https://www.youtube.com/watch?v=AWVUp12XPpU">https://www.youtube.com/watch?v=AWVUp12XPpU</a>'
+    'o','<iframe src="https://www.youtube.com/embed/AWVUp12XPpU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><a target="_blank" href="https://www.youtube.com/watch?v=AWVUp12XPpU">https://www.youtube.com/watch?v=AWVUp12XPpU</a>'
     ],[
     'b','<audio controls><source src="sound/sound_29.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -425,7 +431,7 @@ audio{
     ],[
     'o','If everyone would have a voice, maybe it would sound like that.'
     ],[
-    'o','<img class="screenshot" src="screenshot/010.png"><a target="_blank" href="https://www.youtube.com/watch?v=PHBJNN-M_Mo">https://www.youtube.com/watch?v=PHBJNN-M_Mo</a>'
+    'o','<iframe src="https://www.youtube.com/embed/PHBJNN-M_Mo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><a target="_blank" href="https://www.youtube.com/watch?v=PHBJNN-M_Mo">https://www.youtube.com/watch?v=PHBJNN-M_Mo</a>'
     ],[
     'b','<audio controls><source src="sound/sound_36.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -449,7 +455,7 @@ audio{
     ],[
     'o','<img class="screenshot" src="screenshot/012.png"><a target="_blank" href="https://github.com/CorentinJ/Real-Time-Voice-Cloning">https://github.com/CorentinJ/Real-Time-Voice-Cloning</a>'
     ],[
-    '_','<audio controls><source src="sound/sound_42.mp3" type="audio/mpeg"></audio>'
+    'all','<audio controls><source src="sound/sound_42.mp3" type="audio/mpeg"></audio>'
 
     ],[
 
@@ -457,7 +463,7 @@ audio{
 
     ],[
 
-    'Oh. She left. Did I say something wrong?'
+    'b','Oh. She left. Did I say something wrong?'
     ],[
     'o','You speak so many languages. Does anyone speak as many languages like you do? Do they understand each other or they need you <div class="s_speaker speaker_b"></div>? '
     ],[
@@ -469,7 +475,7 @@ audio{
     ],[
     'o','Hello? Are you still there? Weird.'
     ],[
-    'b','<img class="screenshot" src="screenshot/015.png"><a target="_blank" href="https://www.youtube.com/watch?v=Ena8vqWWLvM">https://www.youtube.com/watch?v=Ena8vqWWLvM</a>'
+    'b','<iframe src="https://www.youtube.com/embed/Ena8vqWWLvM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><a target="_blank" href="https://www.youtube.com/watch?v=Ena8vqWWLvM">https://www.youtube.com/watch?v=Ena8vqWWLvM</a>'
     ]
 ]
 
@@ -516,7 +522,7 @@ audio{
                     }
                     timeout_1 = setTimeout(function(){
                         type_2(typecounter)
-                    },5000)
+                    },50)
                 }
                 $(".conv_wrapper").scroll(function(){
                     console.log('sd;lfkj')
@@ -534,7 +540,7 @@ audio{
                     if(typecounter<some_array.length){
                         timeout_2 = setTimeout(function(){
                             type_1()
-                        },500)
+                        },50)
                     }
                 }
                 $('.send').click(function(){
