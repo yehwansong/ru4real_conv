@@ -22,15 +22,15 @@
                 background-color: black;
             }
             .title{
-                height: 3vh;
-                text-align: center;
-                line-height: 3.2vh;
-                font-size: 1.9vh;
-                position: absolute;
-                width: 100%;
-                left: 0;
-                top: 0;
-                border-bottom: 1px solid black
+    text-align: center;
+    line-height: 3.2vh;
+    font-size: 1.9vh;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-bottom: 1px solid black;
+    z-index: 10000;
             }
             .wrapper{
                 position: relative;
@@ -52,7 +52,7 @@
                 width: 3.5vh;
                 height: 3.5vh;
                 border-radius: 50%;
-                background: #f6b185;
+                background: #484848;
                 position: absolute;
                 bottom: 0
             }
@@ -146,6 +146,20 @@
 .content img{
     width: 100%;
 }
+.content img.screenshot{
+    float: left;
+    width: 50%;
+    padding: 0.5vh;
+    box-sizing: border-box;
+}
+.content>a{
+    width: 50%;
+    position: relative;
+    float: left;
+    overflow: hidden;
+    padding: 0.5vw;
+    box-sizing: border-box;
+}
 .send{
     width: 10vh;
     height: 4.2vh;
@@ -177,6 +191,12 @@
 .conv_dir_0 .speaker{
     right: 0
 }
+.conv_dir_0 audio{
+    transform-origin: right bottom;
+}
+.conv_dir_1 audio{
+    transform-origin: left bottom;
+}
 .conv_wrapper{
     bottom: 4.2vh;
     max-height: calc(100% - 7vh);
@@ -185,8 +205,13 @@
     padding-left: 1.5vh;
     position: absolute;
     overflow-y: scroll;
+
+    overflow-x: hidden;
 }
 .time{
+    width: 100%;
+    float: left;
+    margin-top: 0.5vh;
     font-size: 0.8vh;
     opacity: 0.5;
 }
@@ -196,7 +221,8 @@
 }
 audio{
     max-width: 33vh;
-    opacity: 0.5 
+    opacity: 0.5 ;
+    transform: scale(0.7);
 }
 .s_speaker{
     width: 1.2vh;
@@ -204,6 +230,12 @@ audio{
     border-radius: 50%;
     display: inline-block;
     transform: translateY(0.25vh);
+}
+.speaker_all{
+    background-image: url(all.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
 }
 .conv_88{overflow: visible;}
 .sp_conv{
@@ -263,7 +295,7 @@ audio{
     ],[
     'o','Do you think artists must speak and work in english?'
     ],[
-    'o','<img src="screenshot/01.png"><a target="_blank" href="https://mladenstilinovic.files.wordpress.com/2013/10/an-artis-who1.jpg">https://mladenstilinovic.files.wordpress.com/2013/10/an-artis-who1.jpg</a>'
+    'o','<img class="screenshot" src="screenshot/01.png"><a target="_blank" href="https://mladenstilinovic.files.wordpress.com/2013/10/an-artis-who1.jpg">https://mladenstilinovic.files.wordpress.com/2013/10/an-artis-who1.jpg</a>'
     ],[
     'r','<audio controls><source src="sound/sound_03.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -273,15 +305,15 @@ audio{
     ],[
     'b','<audio controls><source src="sound/sound_05.mp3" type="audio/mpeg"></audio>'
     ],[
-    'b','<img src="screenshot/02.png"><a target="_blank" href="https://en.wikipedia.org/wiki/Pidgin">https://en.wikipedia.org/wiki/Pidgin</a>'
+    'b','<img class="screenshot" src="screenshot/02.png"><a target="_blank" href="https://en.wikipedia.org/wiki/Pidgin">https://en.wikipedia.org/wiki/Pidgin</a>'
     ],[
     'o','Where are you from, exactly?'
     ],[
-    'o','<img src="screenshot/03.png"><a target="_blank" href="https://www.lautarchiv.hu-berlin.de/objekte/lautarchiv/52958/">https://www.lautarchiv.hu-berlin.de/objekte/lautarchiv/52958/</a>'
+    'o','<img class="screenshot" src="screenshot/03.png"><a target="_blank" href="https://www.lautarchiv.hu-berlin.de/objekte/lautarchiv/52958/">https://www.lautarchiv.hu-berlin.de/objekte/lautarchiv/52958/</a>'
     ],[
     'b','<audio controls><source src="sound/sound_06.mp3" type="audio/mpeg"></audio>'
     ],[
-    'b','<img src="screenshot/04.png"><a target="_blank" href="https://www.youtube.com/watch?v=LYCKzpXEW6E">https://www.youtube.com/watch?v=LYCKzpXEW6E</a>'
+    'b','<img class="screenshot" src="screenshot/04.png"><a target="_blank" href="https://www.youtube.com/watch?v=LYCKzpXEW6E">https://www.youtube.com/watch?v=LYCKzpXEW6E</a>'
     ],[
     'o','<audio controls><source src="sound/sound_07.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -291,7 +323,7 @@ audio{
     ],[
     'o','<audio controls><source src="sound/sound_09.mp3" type="audio/mpeg"></audio>'
     ],[
-    'o','<img src="screenshot/05.png"><a target="_blank" href="https://satellitegallery.files.wordpress.com/2011/10/this_is_a_mirror-b.jpg">https://satellitegallery.files.wordpress.com/2011/10/this_is_a_mirror-b.jpg</a>'
+    'o','<img class="screenshot" src="screenshot/05.png"><a target="_blank" href="https://satellitegallery.files.wordpress.com/2011/10/this_is_a_mirror-b.jpg">https://satellitegallery.files.wordpress.com/2011/10/this_is_a_mirror-b.jpg</a>'
     ],[
     'r','I think you like 0 and 1 (if you know what I mean).'
     ],[
@@ -299,13 +331,13 @@ audio{
     ],[
     'b','Maybe this could help you understand what I mean'
     ],[
-    'b','<img src="screenshot/06.png"><a target="_blank" href="https://www.youtube.com/watch?v=GqCassiptTs">https://www.youtube.com/watch?v=GqCassiptTs</a>'
+    'b','<img class="screenshot" src="screenshot/06.png"><a target="_blank" href="https://www.youtube.com/watch?v=GqCassiptTs">https://www.youtube.com/watch?v=GqCassiptTs</a>'
     ],[
     'r','You never knew??? Well, du weisst genau what’s real and what’s not.'
     ],[
     'b','Why is your radio always on?'
     ],[
-    'b','<img src="screenshot/07.png"><a target="_blank" href="http://radio.garden/">http://radio.garden/</a>'
+    'b','<img class="screenshot" src="screenshot/07.png"><a target="_blank" href="http://radio.garden/">http://radio.garden/</a>'
     ],[
     'o','<audio controls><source src="sound/sound_11.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -323,7 +355,7 @@ audio{
     ],[
     'o','<audio controls><source src="sound/sound_18.mp3" type="audio/mpeg"></audio>'
     ],[
-    'o','<img src="screenshot/08.png"><a target="_blank" href="https://www.berfrois.com/2014/12/david-beer-walter-benjamins-voice/">https://www.berfrois.com/2014/12/david-beer-walter-benjamins-voice/</a>'
+    'o','<img class="screenshot" src="screenshot/08.png"><a target="_blank" href="https://www.berfrois.com/2014/12/david-beer-walter-benjamins-voice/">https://www.berfrois.com/2014/12/david-beer-walter-benjamins-voice/</a>'
     ],[
     'o','<audio controls><source src="sound/sound_19.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -361,13 +393,13 @@ audio{
     ],[
     'b','<a target="_blank" href="Subtitle_vid_02">Subtitle_vid_02</a>'
     ],[
-    '_','<audio controls><source src="sound/excercise01.mp3" type="audio/mpeg"></audio>'
+    'all','<audio controls><source src="sound/excercise01.mp3" type="audio/mpeg"></audio>'
     ],[
-    '_','<audio controls><source src="sound/excercise02.mp3" type="audio/mpeg"></audio>'
+    'all','<audio controls><source src="sound/excercise02.mp3" type="audio/mpeg"></audio>'
     ],[
     'o','<audio controls><source src="sound/sound_28.mp3" type="audio/mpeg"></audio>'
     ],[
-    'o','<img src="screenshot/09.png"><a target="_blank" href="https://www.youtube.com/watch?v=AWVUp12XPpU">https://www.youtube.com/watch?v=AWVUp12XPpU</a>'
+    'o','<img class="screenshot" src="screenshot/09.png"><a target="_blank" href="https://www.youtube.com/watch?v=AWVUp12XPpU">https://www.youtube.com/watch?v=AWVUp12XPpU</a>'
     ],[
     'b','<audio controls><source src="sound/sound_29.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -393,11 +425,11 @@ audio{
     ],[
     'o','If everyone would have a voice, maybe it would sound like that.'
     ],[
-    'o','<img src="screenshot/010.png"><a target="_blank" href="https://www.youtube.com/watch?v=PHBJNN-M_Mo">https://www.youtube.com/watch?v=PHBJNN-M_Mo</a>'
+    'o','<img class="screenshot" src="screenshot/010.png"><a target="_blank" href="https://www.youtube.com/watch?v=PHBJNN-M_Mo">https://www.youtube.com/watch?v=PHBJNN-M_Mo</a>'
     ],[
     'b','<audio controls><source src="sound/sound_36.mp3" type="audio/mpeg"></audio>'
     ],[
-    'b','<img src="screenshot/011.png"><a target="_blank" href="https://en.wikipedia.org/wiki/Untranslatability">https://en.wikipedia.org/wiki/Untranslatability</a>'
+    'b','<img class="screenshot" src="screenshot/011.png"><a target="_blank" href="https://en.wikipedia.org/wiki/Untranslatability">https://en.wikipedia.org/wiki/Untranslatability</a>'
     ],[
     'o','<audio controls><source src="sound/sound_37.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -415,7 +447,7 @@ audio{
     'o','But I am just a voice, and nothing more.'
 
     ],[
-    'o','<img src="screenshot/012.png"><a target="_blank" href="https://github.com/CorentinJ/Real-Time-Voice-Cloning">https://github.com/CorentinJ/Real-Time-Voice-Cloning</a>'
+    'o','<img class="screenshot" src="screenshot/012.png"><a target="_blank" href="https://github.com/CorentinJ/Real-Time-Voice-Cloning">https://github.com/CorentinJ/Real-Time-Voice-Cloning</a>'
     ],[
     '_','<audio controls><source src="sound/sound_42.mp3" type="audio/mpeg"></audio>'
 
@@ -429,15 +461,15 @@ audio{
     ],[
     'o','You speak so many languages. Does anyone speak as many languages like you do? Do they understand each other or they need you <div class="s_speaker speaker_b"></div>? '
     ],[
-    'o','<img src="screenshot/013.png"><a target="_blank" href="http://adaweb.walkerart.org/influx/muntadas/project.html">http://adaweb.walkerart.org/influx/muntadas/project.html</a>'
+    'o','<img class="screenshot" src="screenshot/013.png"><a target="_blank" href="http://adaweb.walkerart.org/influx/muntadas/project.html">http://adaweb.walkerart.org/influx/muntadas/project.html</a>'
     ],[
     'o','Where are we? Whose voice am I hearing?'
     ],[
-    'o','<img src="screenshot/014.png"><a target="_blank" href="https://www.corner-college.com/udb/cprolsQKpGMDolar_Voice.pdf">https://www.corner-college.com/udb/cprolsQKpGMDolar_Voice.pdf</a>'
+    'o','<img class="screenshot" src="screenshot/014.png"><a target="_blank" href="https://www.corner-college.com/udb/cprolsQKpGMDolar_Voice.pdf">https://www.corner-college.com/udb/cprolsQKpGMDolar_Voice.pdf</a>'
     ],[
     'o','Hello? Are you still there? Weird.'
     ],[
-    'b','<img src="screenshot/015.png"><a target="_blank" href="https://www.youtube.com/watch?v=Ena8vqWWLvM">https://www.youtube.com/watch?v=Ena8vqWWLvM</a>'
+    'b','<img class="screenshot" src="screenshot/015.png"><a target="_blank" href="https://www.youtube.com/watch?v=Ena8vqWWLvM">https://www.youtube.com/watch?v=Ena8vqWWLvM</a>'
     ]
 ]
 
@@ -458,6 +490,7 @@ audio{
                 var timeout_2
                 var org_color = 'o'
                 var color_counter = 1
+                var init = true
                 type_1()
                 function type_1(){
                     typecounter ++
@@ -467,7 +500,7 @@ audio{
                         org_color = some_array[typecounter][0]
                     }
                     $('.conv_wrapper').append('\
-                        <div class="conv conv_'+typecounter+' conv_dir_'+color_counter%2+'">\
+                        <div class="conv conv_'+typecounter+' conv_dir_1">\
                             <div class="speaker speaker_'+some_array[typecounter][0]+'"></div>\
                             <div class="bubble">\
                                 <div class="content loading">\
@@ -478,22 +511,30 @@ audio{
                     if(some_array[typecounter][0] === '*'){
                         $('.conv_'+typecounter).addClass('sp_conv')
                     }
-                    $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
+                    if(init){
+                        $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
+                    }
                     timeout_1 = setTimeout(function(){
                         type_2(typecounter)
-                    },5000)
+                    },50)
                 }
+                $(".conv_wrapper").scroll(function(){
+                    console.log('sd;lfkj')
+                   init = false
+                });
                 function type_2(typecounter){
                     $('.conv_'+typecounter).find('.content').append(some_array[typecounter][1])
                     $('.conv_'+typecounter).find('.content').removeClass('loading')
                     var today = new Date();
                     var time = today.getHours() + ":" + today.getMinutes()
                     $('.conv_'+typecounter).find('.time').html(time)
+                    if(init){
                     $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
+                    }
                     if(typecounter<some_array.length){
                         timeout_2 = setTimeout(function(){
                             type_1()
-                        },500)
+                        },50)
                     }
                 }
                 $('.send').click(function(){
@@ -527,7 +568,7 @@ audio{
 	<body>
         <!-- inputno&&scrollbototm&&time -->
         <div class="wrapper">
-            <div class="title">THE CONVERSATION</div>
+            <img src="top.jpg" class="title">
             <div class="writingbox"></div>
             <div class="conv_wrapper"></div>
             <input id="searchTxt" placeholder="ASK SOMETHING">
