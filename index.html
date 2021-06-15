@@ -161,6 +161,16 @@
     padding: 0.5vw;
     box-sizing: border-box;
 }
+.content>iframe{
+    width: 100%;
+    padding: 0;
+    height: auto;
+    min-height: 20vh;
+}
+.iframebubble{
+    width: calc(100% - 6vh);
+    min-width: calc(100% - 6vh);
+}
 .send{
     width: 10vh;
     height: 4.2vh;
@@ -245,14 +255,14 @@ audio{
 .conv_88{overflow: visible;}
 .sp_conv{
     overflow: visible;
-    width: 100vw;
-    min-width: 100vw;
+    width: 100%;
+    min-width: 100%;
     height: 3.5vh;
     left: -1.5vh;
 }
 .sp_conv .speaker{
     position: absolute;
-    width: 100vw;
+    width: calc(100% + 1.5vh);
         background: #c2c2c2;
         border-radius: 0;
 
@@ -263,7 +273,7 @@ audio{
     width: 100%;
     text-align: center;
     /* position: absolute; */
-    min-width: calc(100vw - 10vh);
+    min-width: calc(100% - 10vh);
     }
 .sp_conv .content{
     top: 50%;
@@ -274,6 +284,10 @@ audio{
 .sp_conv .time{
     display: none;
 
+}
+.iframeconv{
+    width: 100%;
+    height: 100%
 }
         </style>
         <script src="js/jquery.js"></script>
@@ -397,7 +411,7 @@ audio{
     ],[
     'b','Rap? R&B? Anyone?'
     ],[
-    'b','<a target="_blank" href="Subtitle_vid_02">Subtitle_vid_02</a>'
+    'b','<iframe src="https://www.youtube.com/embed/CvKFKOwxjKk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><a target="_blank" href="Subtitle_vid_02">Subtitle_vid_02</a>'
     ],[
     'all','<audio controls><source src="sound/excercise01.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -455,7 +469,7 @@ audio{
     ],[
     'o','<img class="screenshot" src="screenshot/012.png"><a target="_blank" href="https://github.com/CorentinJ/Real-Time-Voice-Cloning">https://github.com/CorentinJ/Real-Time-Voice-Cloning</a>'
     ],[
-    'all','<audio controls><source src="sound/sound_42.mp3" type="audio/mpeg"></audio>'
+    'r','<audio controls><source src="sound/sound_42.mp3" type="audio/mpeg"></audio>'
 
     ],[
 
@@ -522,7 +536,7 @@ audio{
                     }
                     timeout_1 = setTimeout(function(){
                         type_2(typecounter)
-                    },50)
+                    },5000)
                 }
                 $(".conv_wrapper").scroll(function(){
                     console.log('sd;lfkj')
@@ -534,13 +548,19 @@ audio{
                     var today = new Date();
                     var time = today.getHours() + ":" + today.getMinutes()
                     $('.conv_'+typecounter).find('.time').html(time)
+                    if(some_array[typecounter][1].split('iframe').length>1){
+                        console.log(some_array[typecounter][1])
+                        console.log(some_array[typecounter][1].split('iframe').length)
+                        $('.conv_'+typecounter).find('.bubble').addClass('iframebubble')
+                        $('.conv_'+typecounter).addClass('iframeconv')
+                    }
                     if(init){
-                    $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
+                        $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
                     }
                     if(typecounter<some_array.length){
                         timeout_2 = setTimeout(function(){
                             type_1()
-                        },50)
+                        },500)
                     }
                 }
                 $('.send').click(function(){
