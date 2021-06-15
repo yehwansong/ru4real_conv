@@ -148,13 +148,13 @@
 }
 .content img.screenshot{
     float: left;
-    width: 75%;
+    width: 100%;
     padding: 0.5vh;
     box-sizing: border-box;
 }
 .content>a,
 .content>iframe{
-    width: 75%;
+    width: 100%;
     position: relative;
     float: left;
     overflow: hidden;
@@ -163,7 +163,7 @@
 }
 .content>iframe{
     width: 100%;
-    padding: 0;
+    padding: 1vw;
     height: auto;
     min-height: 20vh;
 }
@@ -210,7 +210,7 @@
 }
 .conv_wrapper{
     bottom: 4.2vh;
-    max-height: calc(100% - 7vh);
+    max-height: calc(100% - 11vh);
     width: 100%;
     left: 0;
     padding-left: 1.5vh;
@@ -289,6 +289,10 @@ audio{
     width: 100%;
     height: 100%
 }
+.audiobubble{
+    max-width: 27vh;}
+    .linkbubble{
+    max-width: 30vh;}
         </style>
         <script src="js/jquery.js"></script>
         <script type="text/javascript">var some_array=[
@@ -359,7 +363,7 @@ audio{
     ],[
     'b','<img class="screenshot" src="screenshot/07.png"><a target="_blank" href="http://radio.garden/">http://radio.garden/</a>'
     ],[
-    'o','<audio controls><source src="sound/sound_11.mp3" type="audio/mpeg"></audio>'
+    'b','<audio controls><source src="sound/sound_11.mp3" type="audio/mpeg"></audio>'
     ],[
     'r','<audio controls><source src="sound/sound_12.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -461,9 +465,6 @@ audio{
     ],[
     'b','Maybe you could take a look at your reading material again? Maybe you do know more than I do?'
     ],[
-    'o','<audio controls><source src="sound/sound_37.mp3" type="audio/mpeg"></audio>'
-
-    ],[
     'o','But I am just a voice, and nothing more.'
 
     ],[
@@ -536,7 +537,7 @@ audio{
                     }
                     timeout_1 = setTimeout(function(){
                         type_2(typecounter)
-                    },5000)
+                    },50)
                 }
                 $(".conv_wrapper").scroll(function(){
                     console.log('sd;lfkj')
@@ -549,10 +550,16 @@ audio{
                     var time = today.getHours() + ":" + today.getMinutes()
                     $('.conv_'+typecounter).find('.time').html(time)
                     if(some_array[typecounter][1].split('iframe').length>1){
-                        console.log(some_array[typecounter][1])
-                        console.log(some_array[typecounter][1].split('iframe').length)
                         $('.conv_'+typecounter).find('.bubble').addClass('iframebubble')
                         $('.conv_'+typecounter).addClass('iframeconv')
+                    }
+                    if(some_array[typecounter][1].split('audio').length>1){
+                        $('.conv_'+typecounter).find('.bubble').addClass('audiobubble')
+                        $('.conv_'+typecounter).addClass('audioconv')
+                    }
+                    if(some_array[typecounter][1].split('_blank').length>1){
+                        $('.conv_'+typecounter).find('.bubble').addClass('linkbubble')
+                        $('.conv_'+typecounter).addClass('linkconv')
                     }
                     if(init){
                         $(".conv_wrapper").scrollTop($(".conv_wrapper")[0].scrollHeight);
@@ -560,7 +567,7 @@ audio{
                     if(typecounter<some_array.length){
                         timeout_2 = setTimeout(function(){
                             type_1()
-                        },500)
+                        },50)
                     }
                 }
                 $('.send').click(function(){
