@@ -252,7 +252,7 @@ audio{
     background-color: transparent;
 
 }
-.conv_88{overflow: visible;}
+/*.conv_88{overflow: visible;}*/
 .sp_conv{
     overflow: visible;
     width: 100%;
@@ -280,6 +280,7 @@ audio{
     position: absolute;
     transform: translateY(-50%) translateX(-50%);
     left: 50%;
+    white-space: nowrap;
 }
 .sp_conv .time{
     display: none;
@@ -325,7 +326,7 @@ audio{
     ],[
     'b','<audio controls><source src="sound/sound_04.mp3" type="audio/mpeg"></audio>'
     ],[
-    'r','<div class="s_speaker speaker_r"></div> : NEEEE gar nicht. Many artists sprechen kein Englisch andddd they make ugly art. Many both at the same time. Sedih eh. Aing ketawain sih. But most importantly, you still wanna know about people who speak to themselves?]   Ké heula, ugly art could be cool after I think about it.'
+    'r','Ké heula, ugly art could be cool after I think about it.'
     ],[
     'b','<audio controls><source src="sound/sound_05.mp3" type="audio/mpeg"></audio>'
     ],[
@@ -474,11 +475,11 @@ audio{
 
     ],[
 
-    '*','*ZAIDA LEFT THE GROUP*'
+    '*','*<div class="s_speaker speaker_r"></div> LEFT THE GROUP*'
 
     ],[
 
-    'b','Oh. She left. Did I say something wrong?'
+    'o','Oh. She left. Did I say something wrong?'
     ],[
     'o','You speak so many languages. Does anyone speak as many languages like you do? Do they understand each other or they need you <div class="s_speaker speaker_b"></div>? '
     ],[
@@ -537,7 +538,7 @@ audio{
                     }
                     timeout_1 = setTimeout(function(){
                         type_2(typecounter)
-                    },5000)
+                    },50)
                 }
                 $(".conv_wrapper").scroll(function(){
                     console.log('sd;lfkj')
@@ -567,7 +568,7 @@ audio{
                     if(typecounter<some_array.length){
                         timeout_2 = setTimeout(function(){
                             type_1()
-                        },500)
+                        },50)
                     }
                 }
                 $('.send').click(function(){
